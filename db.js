@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const mongoUri = 'mongodb://localhost:27017/tareas_db'; // Cambia esto por tu URL de conexión
+const mongoUri = process.env.MONGO_URI; // Cambia esto por tu URL de conexión
 
 const connectDB = async () => {
   try {

@@ -2,10 +2,12 @@
 
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
+require('dotenv').config();
+
 
 // ⚠️ Asegúrate de crear un archivo .env o usar una variable de entorno para tu secreto
 // Por ahora, usaremos un string fijo solo para el ejemplo.
-const JWT_SECRET = 'TU_SECRETO_SUPER_SEGURO_Y_LARGO'; 
+const JWT_SECRET = process.env.JWT_SECRET; 
 
 // Función auxiliar para generar el Token JWT
 const generateToken = (id) => {

@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/User'); // Necesario para buscar al usuario por ID
 
 // ⚠️ Usar el mismo secreto definido en authController.js (idealmente cargado desde .env)
-const JWT_SECRET = 'TU_SECRETO_SUPER_SEGURO_Y_LARGO'; 
+const JWT_SECRET = process.env.JWT_SECRET; 
 
 // Función de middleware que se insertará en las rutas protegidas
 const protect = async (req, res, next) => {
