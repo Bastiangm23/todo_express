@@ -4,6 +4,10 @@ const authController = require('./controllers/authController');
 const { protect } = require('./middleware/authMiddleware');
 const cors = require('cors');
 require('dotenv').config();
+
+// Importar los archivos de rutas
+const authRoutes = require('./routes/authRoutes');
+const tareaRoutes = require('./routes/tareaRoutes');
 // ...
 
 // Esto permite que CUALQUIER dominio acceda a tu API (fácil para desarrollo)
@@ -16,19 +20,10 @@ app.use(express.json());
 
 app.use(cors());
     
-app.get("/", protect, tareaController.obtenerTareas);
-
-app.post("/crear_tarea", protect, tareaController.crearTarea);
-
-app.delete("/eliminar_tarea/:id", protect, tareaController.eliminarTarea);
-
-app.put("/actualizar_tarea/:id", protect, tareaController.actualizarTarea);
+app.use("/", authRoutes); 
 
 
-app.post("/auth/register", authController.registerUser); 
-
-app.post("/auth/login", authController.loginUser);      
-
+app.use("/auth", authRoutes); 
 
 app.listen(port, () =>{
     console.log(`El servidor esta corriendo en el puerto: ${port}`);
